@@ -1,6 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Link from "next/link";
+import { useSession } from 'next-auth/react';
+import { Session } from 'inspector';
 
-export default function Profile() {
+
+export default async function Profile() {
+
+
+    const {data:session} =useSession()
     return (
         <main className="w-[100%] flex flex-col bg-white">
             <div className="text-5xl font-thin text-neutral-400 font-family: 'Roboto' pr-4 mt-8">YOUR</div>
@@ -12,12 +19,12 @@ export default function Profile() {
             <div className="flex flex-col justify-center items-center h-screen">
                 <div className="bg-gray-100 p-4 w-10/12 mx-auto mb-4 mt-8">
                     <p className="text-gray-700 text-medium">Name</p>
-                    <p className="text-gray-700 text-xl">Moss Rudyang</p>
+                    <p className="text-gray-700 text-xl">{session?.user?.name}</p>
                 </div>
             
                 <div className="bg-gray-100 p-4 w-10/12 mx-auto mb-4">
                     <p className="text-gray-700 text-medium">Email</p>
-                    <p className="text-gray-700 text-xl">MossRud@email.com</p>
+                    <p className="text-gray-700 text-xl">{session?.user?.email}</p>
                 </div>
             
                 <div className="bg-gray-100 p-4 w-10/12 mx-auto mb-4">
@@ -30,7 +37,11 @@ export default function Profile() {
                     <p className="text-gray-700 text-xl">USER</p>
                 </div>
 
+                
+
+
             </div>
+                
         </main>
     );
 }
