@@ -9,6 +9,7 @@ export default async function TopMenu() {
                 <Image src={'/img/logo.png'} alt="logo" className="h-full w-auto" width={0} height={0} sizes='100vh'/>
             </Link>
             <TopMenuItem title='Booking' pageRef='/booking'/>
+            <TopMenuItem title="Profile" pageRef="/profile"/>
         </div>
     )
 }
