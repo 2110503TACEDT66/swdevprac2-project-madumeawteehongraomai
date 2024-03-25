@@ -1,13 +1,23 @@
+"use client"
 import React, { useState } from 'react';
-import Link from "next/link";
+import getUserProfile from "@/libs/getUserProfile";
+import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { getServerSession } from "next-auth";
 import { useSession } from 'next-auth/react';
-import { Session } from 'inspector';
+
 
 
 export default async function Profile() {
+   
+    const {data:session} = await useSession()
+    console.log(session)
 
+    if(!session|| !session.user.token)return null
 
-    const {data:session} =useSession()
+    const profile = await getUserProfile(session.user.token)
+    var createdAt = new Date(profile.data.createdAt)
+
+   
     return (
         <main className="w-[100%] flex flex-col bg-white">
             <div className="text-5xl font-thin text-neutral-400 font-family: 'Roboto' pr-4 mt-8">YOUR</div>
@@ -19,22 +29,22 @@ export default async function Profile() {
             <div className="flex flex-col justify-center items-center h-screen">
                 <div className="bg-gray-100 p-4 w-10/12 mx-auto mb-4 mt-8">
                     <p className="text-gray-700 text-medium">Name</p>
-                    <p className="text-gray-700 text-xl">{session?.user?.name}</p>
+                    <p className="text-gray-700 text-xl">{profile.data.name}</p>
                 </div>
             
                 <div className="bg-gray-100 p-4 w-10/12 mx-auto mb-4">
                     <p className="text-gray-700 text-medium">Email</p>
-                    <p className="text-gray-700 text-xl">{session?.user?.email}</p>
+                    <p className="text-gray-700 text-xl">{profile.data.email}</p>
                 </div>
             
                 <div className="bg-gray-100 p-4 w-10/12 mx-auto mb-4">
                     <p className="text-gray-700 text-medium">TEL</p>
-                    <p className="text-gray-700 text-xl">091-XXX-XXX</p>
+                    <p className="text-gray-700 text-xl">{profile.data.tel}</p>
                 </div>
 
                 <div className="bg-gray-100 p-4 w-10/12 mx-auto mb-4">
                     <p className="text-gray-700 text-medium">ROLE</p>
-                    <p className="text-gray-700 text-xl">USER</p>
+                    <p className="text-gray-700 text-xl">{profile.data.role}</p>
                 </div>
 
                 

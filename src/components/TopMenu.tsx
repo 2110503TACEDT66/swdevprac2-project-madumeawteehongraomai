@@ -3,6 +3,7 @@ import TopMenuItem from './TopMenuItem';
 import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+
 export default  function TopMenu() {
     return (
         <div className="h-[50px] bg-white fixed top-0 left-0 right-0 z-30 border-b border-black border-solid flex flex-row-reverse">
