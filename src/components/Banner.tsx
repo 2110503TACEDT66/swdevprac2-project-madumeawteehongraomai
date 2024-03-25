@@ -1,16 +1,9 @@
-import Image from "next/image";
+import VideoBanner from "./VideoBanner"
 
 export default function Banner() {
     return (
-        <div className="block relative p-5 m-0 w-[100vw] h-[80vh]">
-            <Image src={'/img/cover1.jpg'}
-            alt="cover"
-            fill={true}
-            objectFit="cover"/>
-            <div className="relative text-[40px] text-black text-center top-24 z-20">
-                <h1 className='text-4xl font-medium'>Online Job Fair Registration</h1>
-                <p className='text-xl'>Website for booking interview</p>
-            </div>
+        <div className="block mx-[8%] my-10 absolute w-[85%] h-[60%] place-content-center bg-[#F4F4F4]">
+            <VideoBanner></VideoBanner>
         </div>
     )
 }
