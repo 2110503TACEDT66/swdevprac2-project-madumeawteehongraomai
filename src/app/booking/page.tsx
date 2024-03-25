@@ -12,7 +12,7 @@ export default function Booking() {
     const [vaccineDate, setVaccineDate]=useState<Dayjs|null>(null);
 
     return (
-        <main className="w-[100%] flex flex-col items-center space-y-4">
+        <main className="w-[100%] h-[40vw] flex flex-col items-center space-y-4">
             <form className="bg-slate-100 rounded-lg px-4 py-5 w-fit space-y-5 my-20 flex flex-col items-center">
                 <div className="text-xl font-medium text-black">Interview Booking</div>
                 <div>
