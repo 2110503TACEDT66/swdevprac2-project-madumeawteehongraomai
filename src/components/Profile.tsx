@@ -3,9 +3,9 @@ import React from 'react';
 export default function Profile() {
     return (
         <main className="w-[100%] flex flex-col bg-white">
-            <div className="text-4xl font-light text-neutral-400 font-family: 'Roboto' pr-4 mt-8">YOUR</div>
-            <div className="text-4xl font-bold text-black font-family: 'Roboto'  pr-4">PROFILE</div>
-            <div className="flex justify-center w-10/12 mx-auto">
+            <div className="text-5xl font-thin text-neutral-400 font-family: 'Roboto' pr-4 mt-8">YOUR</div>
+            <div className="text-5xl font-bold text-black font-family: 'Roboto'  pr-4">PROFILE</div>
+            <div className="flex justify-center w-10/12 mx-auto mt-8">
                 <div className="border-b border-gray-300 w-full"></div> 
             </div>
 
@@ -29,7 +29,7 @@ export default function Profile() {
                     <p className="text-gray-700 text-medium">ROLE</p>
                     <p className="text-gray-700 text-xl">USER</p>
                 </div>
-                
+
             </div>
         </main>
     );
