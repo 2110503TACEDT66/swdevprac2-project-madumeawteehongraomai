@@ -1,6 +1,5 @@
 "use client"
 import { useEffect, useRef, useState } from "react"
-import { useWindowListener } from "@/hooks/useWindowListener"
 
 export default function VideoPlayer( {vdoSrc, isPlaying}: {vdoSrc:string, isPlaying:boolean} ) {
     
@@ -15,9 +14,7 @@ export default function VideoPlayer( {vdoSrc, isPlaying}: {vdoSrc:string, isPlay
         }
     }, [isPlaying])
 
-    useWindowListener("resize", (e)=>{ alert('Window width is ' + (e.target as Window).innerWidth) })
-
     return (
-        <video className='w-[40%]' src={vdoSrc} ref={vdoRef} muted loop controls/>
+        <video className='w-[100%]' src={vdoSrc} ref={vdoRef} muted loop controls/>
     )
 }
