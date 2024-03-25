@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import TopMenu from '@/components/TopMenu'
 import BottomMenu from '@/components/BottomMenu'
+import BottomTag from '@/components/BottomTag'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -22,6 +23,7 @@ export default function RootLayout({
         <TopMenu/>
         {children}
         <BottomMenu/>
+        <BottomTag/>
       </body>
     </html>
   )
