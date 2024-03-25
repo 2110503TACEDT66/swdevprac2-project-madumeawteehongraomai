@@ -1,9 +1,10 @@
 "use client"
-import React, { useState } from 'react';
+import React from 'react';
 import getUserProfile from "@/libs/getUserProfile";
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import { getServerSession } from "next-auth";
 import { useSession } from 'next-auth/react';
+import Link from 'next/link';
 
 
 
@@ -12,7 +13,7 @@ export default async function Profile() {
     const {data:session} = await useSession()
     console.log(session)
 
-    if(!session|| !session.user.token)return null
+    if(!session|| !session.user.token)return <div><Link  href="/api/auth/signin"><div className='flex items-center absolute left-0 h-full px-2 text-cyan-600  text-sm'>Sign-In</div></Link></div>
 
     const profile = await getUserProfile(session.user.token)
     var createdAt = new Date(profile.data.createdAt)
@@ -47,11 +48,18 @@ export default async function Profile() {
                     <p className="text-gray-700 text-xl">{profile.data.role}</p>
                 </div>
 
+                {
+                 <Link href="/api/auth/signout" ><div  className='flex items-center absolute left-0 h-full px-2 text-cyan-600  text-sm'>
+                    Sign-Out  of  {session.user?.name}</div>
+                    </Link>
+                
+                }
+
                 
 
 
             </div>
                 
         </main>
-    );
+    )
 }
