@@ -4,7 +4,7 @@ import getCompany from "@/libs/getCompany";
 import { link } from "fs";
 
 import Link from "next/link"
-export default async function JobpositionCatalog({ companiesJson,params}: { companiesJson: CompanyJson ,params:{cid:string}}) {
+export default async function JobpositionCatalog({params}: {params:{cid:string}}) {
     const companyDetail = await getCompany(params.cid)
     const conpanyforjob = await companyDetail.data.jobpositions;
 

@@ -45,19 +45,22 @@ export default function Booking({params}:{params:{cid:string,jid:string}}) {
                 } catch (error) {
                     throw new Error("can't fetch company")
                 }
+                
             }
         fetchgetCompany()
     },[])
 
     useEffect(()=>{
         const fetchgetPosition = async () => {
+            if(session) {
                 try {
-                    const position = await getJobposition(params.jid)
+                    const position = await getJobposition(params.jid, session.user.token)
                     setPosition(position.data)
                 } catch (error) {
                     throw new Error("can't fetch jobposition")
                 }
             }
+        }
         fetchgetPosition()
     },[])
 
@@ -83,14 +86,15 @@ export default function Booking({params}:{params:{cid:string,jid:string}}) {
         setLoading(true);
         if(session) {
             if(bookingDate !== null) {
-                const date1st = dayjs('2022-05-09');
+                const date1st = dayjs('2022-05-10');
                 const date2nd = dayjs('2022-05-14');
                 const selectedDate = dayjs(bookingDate);
                 if(selectedDate.isAfter(date1st,'day') && selectedDate.isBefore(date2nd, 'day')) {
                     await createBooking(
                         params.cid,
                         params.jid,
-                        selectedDate.format("YYYY/MM/DD")
+                        selectedDate.format("YYYY/MM/DD"),
+                        session.user.token
                     )
                 } else {
                     alert("Cannot Book Appointment in 2022-05-10 and 2022-05-13 dates.")

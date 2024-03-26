@@ -1,7 +1,7 @@
 export interface BookingItem {
     _id:string
     company: CompanyItem;
-    position: JobpositionItem;
+    job_position: JobpositionItem;
     user:string;
     intvDate: string;
 }
@@ -52,7 +52,7 @@ export interface CompanyJson{
   success:boolean;
   count:number;
   pagination:object;
-  data:CompanyItem;
+  data:CompanyItem[];
 }
 
 export interface CompanyResponse {
