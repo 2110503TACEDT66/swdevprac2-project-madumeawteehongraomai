@@ -4,6 +4,8 @@ import { useSession } from 'next-auth/react';
 import { BookingItem, UserItem } from "../../interface";
 import deleteBooking from "@/libs/deleteBooking";
 import getUserProfile from "@/libs/getUserProfile";
+import DateReserve from "./DateReserve";
+import { Dayjs } from "dayjs";
 
 export default function BookingList() {
     const {data:session} = useSession()
@@ -11,6 +13,7 @@ export default function BookingList() {
     const [profile, setProfile]=useState<UserItem>()
     const [checkdelete , setCheckdelete]=useState<boolean>(true)
     const [loading, setLoading] = useState(false)
+    const [bookingDate, setBookingDate]=useState<Dayjs|null>(null);
 
     // const updateBooking = async () => {
     //     setLoading(true);
@@ -66,6 +69,7 @@ export default function BookingList() {
                         <div className="text-m text-[#C4C4C4]">
                             {BookingItems.intvDate}
                         </div>
+                        <div>
                         <button type="button" name="Book Vaccine" className="text-white text-2xl bg-zinc-700 rounded-xl hover:bg-zinc-950"
                         onClick={
                             async function deletebooking() {
@@ -77,6 +81,14 @@ export default function BookingList() {
                         }>
                             Remove from Booking
                         </button>
+                        
+                            <div>
+                                <p className="text-gray-700 text-[11px] mr-2">Book date between 05-10-2022 and 05-13-2022</p>
+                                <DateReserve onDateChange={(value:Dayjs)=>{setBookingDate(value)}}/>
+                            </div>
+                        </div>
+
+
                     </div>
                 ))
             }

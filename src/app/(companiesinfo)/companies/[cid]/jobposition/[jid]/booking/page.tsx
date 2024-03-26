@@ -93,7 +93,7 @@ export default function Booking({params}:{params:{cid:string,jid:string}}) {
                     await createBooking(
                         params.cid,
                         params.jid,
-                        selectedDate.format("YYYY/MM/DD/HH/mm/ss"),
+                        selectedDate.format("YYYY/MM/DD"),
                         session.user.token
                     )
                 } else {
