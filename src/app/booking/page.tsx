@@ -1,39 +1,42 @@
 "use client"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { TextField,  Select, MenuItem } from "@mui/material"
+import { useSession } from 'next-auth/react';
+import getUserProfile from "@/libs/getUserProfile";
 import DateReserve from "@/components/DateReserve";
 import {Dayjs} from "dayjs";
+import getCompanies from "@/libs/getCompanies";
 
-export default function Booking() {
+export default async function Booking() {
     const [name, setName]=useState<string>('');
     const [lastname, setLastname]=useState<string>('');
     const [citizenID, setCitizenID]=useState<string>('');
     const [location, setLocation]=useState('Chula');
     const [vaccineDate, setVaccineDate]=useState<Dayjs|null>(null);
+    const {data:session} = await useSession()
+    if(!session) {
+        return null
+    }
+    const profile = await getUserProfile(session.user.token)
 
     return (
         <main className="w-[100%] h-[40vw] flex flex-col items-center space-y-4">
             <form className="bg-slate-100 rounded-lg px-4 py-5 w-fit space-y-5 my-20 flex flex-col items-center">
                 <div className="text-xl font-medium text-black">Interview Booking</div>
-                <div>
-                    <TextField variant="standard" name="Name" label="Name" className=""
-                    onChange={(e)=>setName(e.target.value)}/>
+                <div className="flex flex-row">
+                    <p className="text-gray-700 text-medium mr-2">Name: </p>
+                    <p className="text-gray-700 text-xl">{profile.data.name}</p>
+                </div>
+                <div className="flex flex-row">
+                    <p className="text-gray-700 text-medium mr-2">Email: </p>
+                    <p className="text-gray-700 text-xl">{profile.data.email}</p>
+                </div>
+                <div className="flex flex-row">
+                    <p className="text-gray-700 text-medium mr-2">TEL: </p>
+                    <p className="text-gray-700 text-xl">{profile.data.tel}</p>
                 </div>
                 <div>
-                    <TextField variant="standard" name="Lastname" label="Lastname" className=""
-                    onChange={(e)=>setLastname(e.target.value)}/>
-                </div>
-                <div>
-                    <TextField variant="standard" name="Citizen ID" label="Citizen ID" className=""
-                    onChange={(e)=>setCitizenID(e.target.value)}/>
-                </div>
-                <div>
-                    <Select variant="standard" name="hospital" id="hospital" className="h-[2em] w-[200px]"
-                    onChange={(e)=>setLocation((e.target as HTMLSelectElement).value)}>
-                        <MenuItem value="Chula">Chulalongkorn Hospital</MenuItem>
-                        <MenuItem value="Rajavithi">Rajavithi Hospital</MenuItem>
-                        <MenuItem value="Thammasat">Thammasat University Hospital</MenuItem>
-                    </Select>
+                    
                 </div>
                 <div>
                     <DateReserve onDateChange={(value:Dayjs)=>{setVaccineDate(value)}}/>
