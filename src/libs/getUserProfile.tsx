@@ -9,6 +9,7 @@ export default async function getUserProfile(token:string) {
     })
     if(!response.ok){
         throw new Error("Failed to fetch user profile")
+        console.log(response)
 
     }
 

@@ -16,7 +16,7 @@ export default async function Profile() {
     const {data:session} = await useSession()
     console.log(session)
 
-    if(!session|| !session.user.token)return <div><Link  href="/api/auth/signin"><div className='flex items-center absolute left-0 h-full px-2 text-cyan-600  text-sm'>Sign-In</div></Link></div>
+    if(!session|| !session.user.token)return null
 
     const profile = await getUserProfile(session.user.token)
     var createdAt = new Date(profile.data.createdAt)
@@ -51,16 +51,12 @@ export default async function Profile() {
                     <p className="text-gray-700 text-xl">{profile.data.role}</p>
                 </div>
 
-                {
-                 <Link href="/api/auth/signout" ><div  className='flex items-center absolute left-0 h-full px-2 text-cyan-600  text-sm'>
-                    Sign-Out  of  {session.user?.name}</div>
-                    </Link>
-                
-                }
+                <div className="bg-gray-100 p-4 w-10/12 mx-auto mb-4">
+                    <p className="text-gray-700 text-medium">Create At</p>
+                    <p className="text-gray-700 text-xl">{createdAt.toString()}</p>
+                </div>
 
-                
-
-
+              
             </div>
                 
         </main>
