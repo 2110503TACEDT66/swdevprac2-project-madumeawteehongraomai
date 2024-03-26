@@ -4,6 +4,13 @@ interface BookingItem {
     user:string;
     intvDate: Date;
 }
+export interface JobpositionJson{
+  success:boolean;
+  count:number;
+  pagination:object;
+  data:JobpositionItem;
+
+}
 
 interface BookingJson {
   success: boolean;
@@ -11,13 +18,23 @@ interface BookingJson {
   data: BookingItem[]
   }
 
- export interface UserItem{
+  interface UserItem{
     _id: string;
     name: string;
     tel: string;
     email: string;
     role: string;
     token: string;
+}
+ interface JobpositionItem{
+  _id: string,
+  position: string,
+  requirement: string,
+  company: string
+}
+interface JobpositionResponse{
+  success: boolean,
+  data: JobpositionItem
 }
 
 interface CompanyItem{
@@ -28,6 +45,7 @@ interface CompanyItem{
   website: string;
   description: string;
   tel: string;
+  jobpositions: JobpositionItem[]
 }
 
 export interface CompanyJson{
@@ -41,3 +59,13 @@ export interface CompanyResponse {
   success: boolean,
   data: CompanyItem
 }
+
+interface user {
+  _id: string,
+  name: string,
+  tel: string,
+  email: string,
+  role: string,
+  token: string
+}
+
