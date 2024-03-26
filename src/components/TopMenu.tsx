@@ -22,7 +22,6 @@ export default async function TopMenu() {
             <Link href="/" className="flex flex-row absolute left-0 h-full">
                 <Image src={'/img/logo.png'} alt="logo" className="h-full w-auto border-0" width={0} height={0} sizes='100vh'/>
             </Link>
-            <TopMenuItem title='Booking' pageRef='/booking'/>
             <TopMenuItem title='Companies' pageRef='/companies'/>
             <TopMenuItem title='My Booking' pageRef='/mybooking'/>
             <TopMenuItem title="Profile" pageRef="/profile"/>
