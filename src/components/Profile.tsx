@@ -16,7 +16,15 @@ export default async function Profile() {
     const {data:session} = await useSession()
     console.log(session)
 
-    if(!session|| !session.user.token)return null
+    if(!session|| !session.user.token){
+        return (
+            <main className='h-[70%] relative rounded-t-lg mx-5 my-5'>
+                <div>
+                    Please register.
+                </div>
+            </main>
+        );
+    }
 
     const profile = await getUserProfile(session.user.token)
     var createdAt = new Date(profile.data.createdAt)
