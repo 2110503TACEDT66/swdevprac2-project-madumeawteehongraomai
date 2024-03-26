@@ -77,6 +77,9 @@ export default function BookingList() {
                         }>
                             Remove from Booking
                         </button>
+                        <button type="button" name="edit" className="text-white text-2xl bg-zinc-700 rounded-xl hover:bg-zinc-950">
+                            edit
+                        </button>
                     </div>
                 ))
             }
