@@ -6,18 +6,30 @@ import getUserProfile from "@/libs/getUserProfile";
 import DateReserve from "@/components/DateReserve";
 import {Dayjs} from "dayjs";
 import getCompanies from "@/libs/getCompanies";
+import { User } from "next-auth";
 
-export default async function Booking() {
+export default function Booking() {
     const [name, setName]=useState<string>('');
     const [lastname, setLastname]=useState<string>('');
     const [citizenID, setCitizenID]=useState<string>('');
     const [location, setLocation]=useState('Chula');
     const [vaccineDate, setVaccineDate]=useState<Dayjs|null>(null);
-    const {data:session} = await useSession()
-    if(!session) {
-        return null
-    }
-    const profile = await getUserProfile(session.user.token)
+    const {data:session} = useSession()
+    const [profile, setProfile]=useState<user>()
+
+    useEffect(()=>{
+        const fetchgetUserProfile = async () => {
+            if(session) {
+                try {
+                    const profile = await getUserProfile(session.user.token)
+                    setProfile(profile.data)
+                } catch (error) {
+                    throw new Error("can't fetch user")
+                }
+            }
+        }
+        fetchgetUserProfile()
+    },[])
 
     return (
         <main className="w-[100%] h-[40vw] flex flex-col bg-white">
@@ -31,15 +43,15 @@ export default async function Booking() {
                     <div className="text-xl font-medium text-black">Interview Booking</div>
                     <div className="flex flex-row">
                         <p className="text-gray-700 text-medium mr-2">Name: </p>
-                        <p className="text-gray-700 text-xl">{profile.data.name}</p>
+                        <p className="text-gray-700 text-xl">{profile?.name}</p>
                     </div>
                     <div className="flex flex-row">
                         <p className="text-gray-700 text-medium mr-2">Email: </p>
-                        <p className="text-gray-700 text-xl">{profile.data.email}</p>
+                        <p className="text-gray-700 text-xl">{profile?.email}</p>
                     </div>
                     <div className="flex flex-row">
                         <p className="text-gray-700 text-medium mr-2">TEL: </p>
-                        <p className="text-gray-700 text-xl">{profile.data.tel}</p>
+                        <p className="text-gray-700 text-xl">{profile?.tel}</p>
                     </div>
                     <div>
                         

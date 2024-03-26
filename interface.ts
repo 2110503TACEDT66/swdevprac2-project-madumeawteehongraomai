@@ -36,3 +36,12 @@ interface CompanyJson{
   pagination:object;
   data:CompanyItem;
 }
+
+interface user {
+      _id: string,
+      name: string,
+      tel: string,
+      email: string,
+      role: string,
+      token: string
+}
