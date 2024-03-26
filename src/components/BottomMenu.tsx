@@ -8,14 +8,14 @@ export default async function BottomMenu() {
             <BottomMenuItem>
                 <h1>Build by:</h1>
                 <p>Thanakit Thepnok</p>
-                <p>Thanakit Thepnok</p>
-                <p>Thanakit Thepnok</p>
+                <p>Tarit Artchana</p>
+                <p>Suttawit Kaewmuangfang</p>
             </BottomMenuItem>
             <BottomMenuItem>
-                <h1>Build by:</h1>
-                <p>Thanakit Thepnok</p>
-                <p>Thanakit Thepnok</p>
-                <p>Thanakit Thepnok</p>
+                <h1>Github:</h1>
+                <p>Mossqitos</p>
+                <p>TaritArtchana</p>
+                <p>iwishiwasntlive</p>
             </BottomMenuItem>
         </div>
     )

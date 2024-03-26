@@ -30,18 +30,23 @@ interface CompanyItem{
   tel: string;
 }
 
-interface CompanyJson{
+export interface CompanyJson{
   success:boolean;
   count:number;
   pagination:object;
   data:CompanyItem;
 }
 
+export interface CompanyResponse {
+  success: boolean,
+  data: CompanyItem
+}
+
 interface user {
-      _id: string,
-      name: string,
-      tel: string,
-      email: string,
-      role: string,
-      token: string
+  _id: string,
+  name: string,
+  tel: string,
+  email: string,
+  role: string,
+  token: string
 }
