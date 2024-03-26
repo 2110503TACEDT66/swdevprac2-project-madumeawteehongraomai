@@ -11,7 +11,7 @@ import getBooking from "@/libs/getBooking";
 import createBooking from "@/libs/createBooking";
 import { UserItem } from "../../../../../../../../interface";
 
-export default function Booking({params}:{params:{{cid:string},{jid:string}}}) {
+export default function Booking({params}:{params:{cid:string,jid:string}}) {
     const [bookingDate, setBookingDate]=useState<Dayjs|null>(null);
     const {data:session} = useSession()
     const [loading, setLoading] = useState(false)
@@ -60,9 +60,9 @@ export default function Booking({params}:{params:{{cid:string},{jid:string}}}) {
                 const selectedDate = dayjs(bookingDate);
                 if(selectedDate.isAfter(date1st,'day') && selectedDate.isBefore(date2nd, 'day')) {
                     await createBooking(
-                        cid=params
-                        jid=params.jid
-                        date=selectedDate.format("YYYY/MM/DD")
+                        params.cid,
+                        params.jid,
+                        selectedDate.format("YYYY/MM/DD")
                     )
                 } else {
                     alert("Cannot Book Appointment in 2022-05-10 and 2022-05-13 dates.")

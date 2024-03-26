@@ -3,7 +3,7 @@ export interface BookingItem {
     company: CompanyItem;
     position: string;
     user:string;
-    intvDate: Date;
+    intvDate: string;
 }
 
 export interface BookingJson {

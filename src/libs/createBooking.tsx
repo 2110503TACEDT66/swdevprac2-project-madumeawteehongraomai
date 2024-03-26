@@ -1,4 +1,4 @@
-export default async function createBooking({cid, jid, date}:{cid:string, jid:string, date:Date}) {
+export default async function createBooking(cid:string, jid:string, date:string) {
     const response = await fetch(`http://localhost:5000/api/v1/companies/${cid}/${jid}/interviews/`,{
         method: "POST",
         body: JSON.stringify({
