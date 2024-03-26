@@ -42,22 +42,19 @@ export default function BookingList() {
         <>
             {
                 BookItems.map((BookingItems:BookingItem)=>(
-                    <div className="bg=slate-200 rounded px-5 mx-5 py-2 my-2"
+                    <div className="bg-[#F9F9F9] rounded  px-5 mx-5 py-2 my-2 "
                     key={BookingItems._id}>
-                        <div className="text-xl">
-                            {profile?.name}
-                        </div>
-                        <div className="text-sm">
-                            {profile?.tel}
-                        </div>
-                        <div className="text-sm">
-                            {profile?.email}
-                        </div>
-                        <div className="text-sm">
+                        <div className="text-xl text-[#969696]">
                             {BookingItems.company.name}
                         </div>
-                        <div className="text-sm">
+                        <div className="text-l text-[#C4C4C4]">
                             {BookingItems.position}
+                        </div>
+                        <div className="text-m text-[#C4C4C4]">
+                            NAME : {profile?.name}
+                        </div>
+                        <div className="text-m text-[#C4C4C4]">
+                            {BookingItems.intvDate}
                         </div>
                         <button type="button" name="Book Vaccine" className="text-white text-2xl bg-zinc-700 rounded-xl hover:bg-zinc-950"
                         onClick={
