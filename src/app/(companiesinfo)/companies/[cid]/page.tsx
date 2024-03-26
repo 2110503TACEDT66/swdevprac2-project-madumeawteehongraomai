@@ -26,7 +26,7 @@ export default async function CompanyDetailPage({ params }: { params: { cid: str
                 />
                 <div className="flex flex-col ml-8">
                     <div className="text-md mx-5 text-left text-black text-xl">
-                        Kasikornbank, often stylised as KBank and formerly known as the Thai Farmers Bank, is a banking group in Thailand. KBank was established on 8 June 1945 by Choti Lamsam, with registered capital of five million baht. It has been listed on the Stock Exchange of Thailand since 1976.
+                        {companyDetail.data.description}
                     </div>
                     <div className="text-md mx-5 text-left text-black text-xl mt-8">
                         TEL: {companyDetail.data.tel}

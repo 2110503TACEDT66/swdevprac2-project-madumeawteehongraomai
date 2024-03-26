@@ -5,7 +5,8 @@ import { BookingItem, UserItem } from "../../interface";
 import deleteBooking from "@/libs/deleteBooking";
 import getUserProfile from "@/libs/getUserProfile";
 import DateReserve from "./DateReserve";
-import { Dayjs } from "dayjs";
+import dayjs, { Dayjs } from "dayjs";
+import editBooking from "@/libs/editBooking";
 
 export default function BookingList() {
     const {data:session} = useSession()
@@ -15,13 +16,28 @@ export default function BookingList() {
     const [loading, setLoading] = useState(false)
     const [bookingDate, setBookingDate]=useState<Dayjs|null>(null);
 
-    // const updateBooking = async () => {
-    //     setLoading(true);
-    //     if(session) {
-    //         if()
-    //     }
-    // }
-
+    const editBook = async (id:string) => {
+        setLoading(true);
+        if(session) {
+            if(bookingDate !== null) {
+                const date1st = dayjs('2022-05-09 23:59:59');
+                const date2nd = dayjs('2022-05-14 00:00:00');
+                const selectedDate = dayjs(bookingDate);
+                if(selectedDate.isAfter(date1st,'day') && selectedDate.isBefore(date2nd, 'day')) {
+                    await editBooking(
+                        id,
+                        selectedDate.format("YYYY/MM/DD"),
+                        session.user.token
+                    )
+                } else {
+                    alert("Cannot Book Appointment in 2022-05-10 and 2022-05-13 dates.")
+                    setLoading(false);
+                    return;
+                }
+            }
+        }
+        setLoading(false);
+    };
 
     useEffect(()=>{
         const fetchgetUserProfile = async () => {
@@ -70,7 +86,7 @@ export default function BookingList() {
                             {BookingItems.intvDate}
                         </div>
                         <div>
-                        <button type="button" name="Book Vaccine" className="text-white text-2xl bg-zinc-700 rounded-xl hover:bg-zinc-950"
+                        <button type="button" name="Book interview" className="text-white text-2xl bg-zinc-700 rounded-xl hover:bg-zinc-950"
                         onClick={
                             async function deletebooking() {
                                 if(session) {
@@ -82,9 +98,13 @@ export default function BookingList() {
                             Remove from Booking
                         </button>
                         
-                            <div>
+                            <div className="py-1">
+                                <h1>Edit:</h1>
                                 <p className="text-gray-700 text-[11px] mr-2">Book date between 05-10-2022 and 05-13-2022</p>
                                 <DateReserve onDateChange={(value:Dayjs)=>{setBookingDate(value)}}/>
+                                <button type="button" name="edit interview" className="text-white text-2xl bg-zinc-700 rounded-xl hover:bg-zinc-950"
+                                onClick={()=>editBook(BookingItems._id)}>
+                                    submit the edit</button>
                             </div>
                         </div>
 
