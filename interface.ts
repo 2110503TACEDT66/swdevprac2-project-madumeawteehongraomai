@@ -11,7 +11,7 @@ interface BookingJson {
   data: BookingItem[]
   }
 
-  interface UserItem{
+ export interface UserItem{
     _id: string;
     name: string;
     tel: string;
@@ -40,13 +40,4 @@ export interface CompanyJson{
 export interface CompanyResponse {
   success: boolean,
   data: CompanyItem
-}
-
-interface user {
-  _id: string,
-  name: string,
-  tel: string,
-  email: string,
-  role: string,
-  token: string
 }

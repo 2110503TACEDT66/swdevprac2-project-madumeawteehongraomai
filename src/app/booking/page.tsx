@@ -9,12 +9,13 @@ import getCompanies from "@/libs/getCompanies";
 import { User } from "next-auth";
 import getBooking from "@/libs/getBooking";
 import createBooking from "@/libs/createBooking";
+import { UserItem } from "../../../interface";
 
 export default function Booking() {
     const [bookingDate, setBookingDate]=useState<Dayjs|null>(null);
     const {data:session} = useSession()
     const [loading, setLoading] = useState(false)
-    const [profile, setProfile]=useState<user>()
+    const [profile, setProfile]=useState<UserItem>()
     const [BookingItem, setBookingItem]=useState<number>()
     const [error,setError]=useState<string>("")
 

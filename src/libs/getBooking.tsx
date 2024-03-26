@@ -1,4 +1,4 @@
-export default async function getBooking(token:string):Promise<BookingJson> {
+export default async function getBooking(token:string){
     const response = await fetch(`http://localhost:5000/api/v1/interviews`,{
         method: "GET",
         headers:{
