@@ -7,11 +7,11 @@ export default async function CompanyCatalog({companiesJson}:{companiesJson:Comp
     return(
         <>
 
-        <div className="m-5 flex flex-row flex-wrap justify-around content-around p-2.5">
+        <div style={{margin: "20px", display: "flex", flexDirection: "row", flexWrap: "wrap",marginLeft:130}}>
                 {
                         companiesJsonReady?.data.map((CompanyItem)=>(
                         <Link href={`/companies/${CompanyItem._id}`} className="w-1/5">
-                        <Productcard companyName={CompanyItem.name} imgSrc={'/img/profile.png'}
+                        <Productcard companyName={CompanyItem.name} imgSrc={'/img/kbank.jpg'}
                         />
                         </Link>
 

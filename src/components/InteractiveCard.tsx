@@ -4,32 +4,26 @@ import React from "react";
 
 export default function InteractiveCard( {children,contentName} : {children:React.ReactNode,contentName:string}){
     
-    function oncardMouseAction(event:React.SyntheticEvent){
-        if(event.type=="mouseover"){
-            event.currentTarget.classList.remove('shadow-lg')
-            event.currentTarget.classList.add('shadow-2xl')
-            event.currentTarget.classList.remove('bg-white')
-            event.currentTarget.classList.add('bg-neutral-200')
-
-        }
-        else{
-            event.currentTarget.classList.remove('shadow-2xl')
-            event.currentTarget.classList.add('shadow-lg')
-            event.currentTarget.classList.remove('bg-neutral-200')
-            event.currentTarget.classList.add('bg-white')
+    function onCardMouseAction(event:React.SyntheticEvent){
+        if(event.type == 'mouseover'){
+            event.currentTarget.classList.remove('rounded-lg');
+            event.currentTarget.classList.remove('bg-white');
+            event.currentTarget.classList.add('rounded-lg');
+            event.currentTarget.classList.add('bg-neutral-400');
+        }else{
+            event.currentTarget.classList.remove('rounded-lg');
+            event.currentTarget.classList.remove('bg-neutral-400');
+            event.currentTarget.classList.add('rounded-lg');
+            event.currentTarget.classList.add('bg-white');
         }
     }
 
-    function onCardSelected(){
-        alert("You select " + contentName)
-    }
-
-    return(
-        <div className='w-full h-[300px] rounded-lg shadow-lg bg-white' 
+    return (
+        <div className='w-[250px] h-[250px] rounded-lg mr-8' 
         
-        onMouseOver={(e)=>oncardMouseAction(e)}
-        onMouseOut={(e)=>oncardMouseAction(e)}>
+        onMouseOver={(e)=> onCardMouseAction(e)}
+        onMouseOut={(e)=>onCardMouseAction(e)}>
             {children}
         </div>
-    );
+    )
 }
