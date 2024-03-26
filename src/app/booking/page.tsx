@@ -4,18 +4,19 @@ import { TextField,  Select, MenuItem } from "@mui/material"
 import { useSession } from 'next-auth/react';
 import getUserProfile from "@/libs/getUserProfile";
 import DateReserve from "@/components/DateReserve";
-import {Dayjs} from "dayjs";
+import dayjs, {Dayjs} from "dayjs";
 import getCompanies from "@/libs/getCompanies";
 import { User } from "next-auth";
+import getBooking from "@/libs/getBooking";
+import createBooking from "@/libs/createBooking";
 
 export default function Booking() {
-    const [name, setName]=useState<string>('');
-    const [lastname, setLastname]=useState<string>('');
-    const [citizenID, setCitizenID]=useState<string>('');
-    const [location, setLocation]=useState('Chula');
-    const [vaccineDate, setVaccineDate]=useState<Dayjs|null>(null);
+    const [bookingDate, setBookingDate]=useState<Dayjs|null>(null);
     const {data:session} = useSession()
+    const [loading, setLoading] = useState(false)
     const [profile, setProfile]=useState<user>()
+    const [BookingItem, setBookingItem]=useState<number>()
+    const [error,setError]=useState<string>("")
 
     useEffect(()=>{
         const fetchgetUserProfile = async () => {
@@ -30,6 +31,45 @@ export default function Booking() {
         }
         fetchgetUserProfile()
     },[])
+
+    useEffect(()=>{
+        const fetchgetBooking = async () => {
+            if(session) {
+                try {
+                    const data = await getBooking(session.user.token)
+                    setBookingItem(data.count)
+                } catch (error) {
+                    console.error("can't fetch get Booking", error)
+                }
+            }
+        }
+        fetchgetBooking()
+    },[])
+
+    if(session?.user.role === "user" && BookingItem === 3) {
+        return <div className="text-[20px] m-5 font-bold text-red-500 rounded-lg p-3 text-center">You have already booking Interview Date 3 time</div>
+    }
+
+    const makeBooking = async () => {
+        setLoading(true);
+        if(session) {
+            if(bookingDate !== null) {
+                const date1st = dayjs('2022-05-09');
+                const date2nd = dayjs('2022-05-14');
+                const selectedDate = dayjs(bookingDate);
+                if(selectedDate.isAfter(date1st,'day') && selectedDate.isBefore(date2nd, 'day')) {
+                    await createBooking
+                } else {
+                    alert("Cannot Book Appointment in 2022-05-10 and 2022-05-13 dates.")
+                    setError("Cannot Book Appointment in 2022-05-10 and 2022-05-13 dates.");
+                    console.log(error)
+                    setLoading(false);
+                    return;
+                }
+            }
+        }
+        setLoading(false);
+    };
 
     return (
         <main className="w-[100%] h-[40vw] flex flex-col bg-white">
@@ -57,11 +97,12 @@ export default function Booking() {
                         
                     </div>
                     <div>
-                        <DateReserve onDateChange={(value:Dayjs)=>{setVaccineDate(value)}}/>
+                    <p className="text-gray-700 text-[11px] mr-2">Book date between 05-10-2022 and 05-13-2022</p>
+                        <DateReserve onDateChange={(value:Dayjs)=>{setBookingDate(value)}}/>
                     </div>
                     <div>
-                        <button type="button" name="Book Vaccine" className="text-white text-2xl bg-zinc-700 rounded-xl hover:bg-zinc-950">
-                            Book Vaccine
+                        <button type="button" name="intvDate" className="text-white p-2 text-2xl bg-zinc-700 rounded-xl hover:bg-zinc-950" onClick={makeBooking}>
+                            Book Interview Date
                         </button>
                     </div>
                 </form>
