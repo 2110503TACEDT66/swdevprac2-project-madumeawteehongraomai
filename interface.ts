@@ -1,6 +1,7 @@
-interface BookingItem {
-    company: string;
-    position: string;
+export interface BookingItem {
+    _id:string
+    company: CompanyItem;
+    position: JobpositionItem;
     user:string;
     intvDate: string;
 }
@@ -12,13 +13,13 @@ export interface JobpositionJson{
 
 }
 
-interface BookingJson {
+export interface BookingJson {
   success: boolean;
   count: number;
   data: BookingItem[]
   }
 
-  interface UserItem{
+export  interface UserItem{
     _id: string;
     name: string;
     tel: string;
@@ -26,7 +27,7 @@ interface BookingJson {
     role: string;
     token: string;
 }
- interface JobpositionItem{
+export interface JobpositionItem{
   _id: string,
   position: string,
   requirement: string,
@@ -38,7 +39,6 @@ interface JobpositionResponse{
 }
 
 interface CompanyItem{
-  map(arg0: (CompanyItems: CompanyItem) => React.JSX.Element): React.ReactNode;
   _id:string;
   name: string;
   address: string;

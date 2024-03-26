@@ -48,7 +48,7 @@ export default function BookingList() {
                             {BookingItems.company.name}
                         </div>
                         <div className="text-l text-[#C4C4C4]">
-                            {BookingItems.position}
+                            {BookingItems.position.position}
                         </div>
                         <div className="text-m text-[#C4C4C4]">
                             NAME : {profile?.name}
@@ -58,7 +58,7 @@ export default function BookingList() {
                         </div>
                         <button type="button" name="Book Vaccine" className="text-white text-2xl bg-zinc-700 rounded-xl hover:bg-zinc-950"
                         onClick={
-                            async function gay() {
+                            async function deletebooking() {
                                 await deleteBooking(BookingItems._id);
                             }
                         }>
