@@ -1,4 +1,4 @@
-export default async function deleteBooking({id}:{id:string}) {
+export default async function deleteBooking(id:string) {
     const response = await fetch(`http://localhost:5000/api/v1/interviews/${id}`,{
         method: "DELETE",
     })

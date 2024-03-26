@@ -1,11 +1,12 @@
-interface BookingItem {
-    company: string;
+export interface BookingItem {
+    _id:string;
+    company: CompanyItem;
     position: string;
     user:string;
     intvDate: Date;
 }
 
-interface BookingJson {
+export interface BookingJson {
   success: boolean;
   count: number;
   data: BookingItem[]
@@ -21,7 +22,7 @@ interface BookingJson {
 }
 
 interface CompanyItem{
-  map(arg0: (CompanyItems: CompanyItem) => React.JSX.Element): React.ReactNode;
+  // map(arg0: (CompanyItems: CompanyItem) => React.JSX.Element): React.ReactNode;
   _id:string;
   name: string;
   address: string;
