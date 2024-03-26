@@ -86,14 +86,14 @@ export default function Booking({params}:{params:{cid:string,jid:string}}) {
         setLoading(true);
         if(session) {
             if(bookingDate !== null) {
-                const date1st = dayjs('2022-05-10');
-                const date2nd = dayjs('2022-05-14');
+                const date1st = dayjs('2022-05-09 23:59:59');
+                const date2nd = dayjs('2022-05-14 00:00:00');
                 const selectedDate = dayjs(bookingDate);
                 if(selectedDate.isAfter(date1st,'day') && selectedDate.isBefore(date2nd, 'day')) {
                     await createBooking(
                         params.cid,
                         params.jid,
-                        selectedDate.format("YYYY/MM/DD"),
+                        selectedDate.format("YYYY/MM/DD/HH/mm/ss"),
                         session.user.token
                     )
                 } else {
