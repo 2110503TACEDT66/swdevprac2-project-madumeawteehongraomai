@@ -2,7 +2,7 @@
 import BookingList from "@/components/BookingList"
 export default function MybookingPage() {
     return (
-        <main className="h-[70vw] w-[100%] flex flex-col bg-white">
+        <main className="h-[100%] w-[100%] flex flex-col bg-white">
             <div className="text-5xl font-thin text-neutral-400 font-family: 'Roboto' pr-4 mt-8">VIEW</div>
             <div className="text-5xl font-bold text-black font-family: 'Roboto'  pr-4">INTERVIEW</div>
             <div className="flex justify-center w-10/12 mx-auto mt-8">
