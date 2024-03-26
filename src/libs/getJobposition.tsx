@@ -7,8 +7,11 @@ export default async function getJobposition(jid:string, token:string):Promise<J
             authorization: `Bearer ${token}`,
         },
     })
-    if(!response.ok) {
-        throw new Error("Failed to fetch company")
+    const data = await response.json()
+    console.log(data)
+    if(!response.ok){
+        throw new Error("Failed to fetch delete booking")
+
     }
-    return await response.json()
+    return data
 }
