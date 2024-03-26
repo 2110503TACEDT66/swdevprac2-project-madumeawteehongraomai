@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import TopMenu from '@/components/TopMenu'
 import BottomMenu from '@/components/BottomMenu'
+import BottomTag from '@/components/BottomTag'
 import { getServerSession } from 'next-auth'
 import { authOptions } from './api/auth/[...nextauth]/route'
 import NextAuthProvider from '@/providers/NextAuthProvider'
@@ -28,6 +29,7 @@ export default async function RootLayout({
         <TopMenu/>
         {children}
         <BottomMenu/>
+        <BottomTag/>
         </NextAuthProvider>
       </body>
     </html>
