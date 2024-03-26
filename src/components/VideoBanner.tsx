@@ -9,7 +9,7 @@ export default function VideoBanner () {
     return (
         <div className="w-[50%] shadow-lg ml-[2%] my-[3%] p-2 rounded-lg bg-gray-200
         flex flex-row">
-            <VideoPlayer vdoSrc="/vdo/promote.mp4" isPlaying={playing}></VideoPlayer>
+            <VideoPlayer vdoSrc="\vdo\IMG_8627.mov" isPlaying={playing}></VideoPlayer>
         </div>
     )
 }
