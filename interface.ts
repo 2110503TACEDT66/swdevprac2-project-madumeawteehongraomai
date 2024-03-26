@@ -33,12 +33,12 @@ export interface JobpositionItem{
   requirement: string,
   company: string
 }
-interface JobpositionResponse{
+export interface JobpositionResponse{
   success: boolean,
   data: JobpositionItem
 }
 
-interface CompanyItem{
+export interface CompanyItem{
   _id:string;
   name: string;
   address: string;

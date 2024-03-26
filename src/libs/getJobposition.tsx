@@ -1,4 +1,4 @@
-import { JobpositionJson } from "../../interface"
+import { JobpositionJson, JobpositionResponse } from "../../interface"
 export default async function getJobposition(jid:string):Promise<JobpositionJson> {
     await new Promise( (resolve)=>setTimeout(resolve, 1000))
     const response = await fetch(`${process.env.BACKEND_URL}/api/v1/positions/${jid}`)

@@ -9,13 +9,17 @@ import getCompanies from "@/libs/getCompanies";
 import { User } from "next-auth";
 import getBooking from "@/libs/getBooking";
 import createBooking from "@/libs/createBooking";
-import { UserItem } from "../../../../../../../../interface";
+import { JobpositionItem, UserItem, CompanyItem } from "../../../../../../../../interface";
+import getCompany from "@/libs/getCompany";
+import getJobposition from "@/libs/getJobposition";
 
 export default function Booking({params}:{params:{cid:string,jid:string}}) {
     const [bookingDate, setBookingDate]=useState<Dayjs|null>(null);
     const {data:session} = useSession()
     const [loading, setLoading] = useState(false)
     const [profile, setProfile]=useState<UserItem>()
+    const [company, setcompany]=useState<CompanyItem>()
+    const [position, setPosition]=useState<JobpositionItem>()
     const [BookingItem, setBookingItem]=useState<number>()
     const [error,setError]=useState<string>("")
 
@@ -31,6 +35,30 @@ export default function Booking({params}:{params:{cid:string,jid:string}}) {
             }
         }
         fetchgetUserProfile()
+    },[])
+
+    useEffect(()=>{
+        const fetchgetCompany = async () => {
+                try {
+                    const company = await getCompany(params.cid)
+                    setcompany(company.data)
+                } catch (error) {
+                    throw new Error("can't fetch company")
+                }
+            }
+        fetchgetCompany()
+    },[])
+
+    useEffect(()=>{
+        const fetchgetPosition = async () => {
+                try {
+                    const position = await getJobposition(params.jid)
+                    setPosition(position.data)
+                } catch (error) {
+                    throw new Error("can't fetch jobposition")
+                }
+            }
+        fetchgetPosition()
     },[])
 
     useEffect(()=>{
@@ -98,8 +126,13 @@ export default function Booking({params}:{params:{cid:string,jid:string}}) {
                         <p className="text-gray-700 text-medium mr-2">TEL: </p>
                         <p className="text-gray-700 text-xl">{profile?.tel}</p>
                     </div>
-                    <div>
-                        
+                    <div className="flex flex-row">
+                        <p className="text-gray-700 text-medium mr-2">Company: </p>
+                        <p className="text-gray-700 text-xl">{company?.name}</p>
+                    </div>
+                    <div className="flex flex-row">
+                        <p className="text-gray-700 text-medium mr-2">Position: </p>
+                        <p className="text-gray-700 text-xl">{position?.position}</p>
                     </div>
                     <div>
                     <p className="text-gray-700 text-[11px] mr-2">Book date between 05-10-2022 and 05-13-2022</p>
